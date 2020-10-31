@@ -18,20 +18,20 @@ s_train_X, s_val_X, s_train_y, s_val_y = train_test_split(train_X, train_y, rand
 print('Train count: %i %i' % (len(s_train_X), len(s_train_y)))
 print('Test count: %i %i' % (len(s_val_X), len(s_val_y)))
 rf_model = RandomForestRegressor(random_state=1)
-# rf_model.fit(s_train_X, s_train_y)
+rf_model.fit(s_train_X, s_train_y)
 
-rf_model.fit(train_X, train_y)
+# rf_model.fit(train_X, train_y)
 predicts = rf_model.predict(s_val_X)
 mae = mean_absolute_error(predicts, s_val_y)
 print('MAE %i' % mae)
 
 
-test_file_path = './home-data-for-ml-course/test.csv'
-test_data = pd.read_csv(test_file_path)
-
-test_X = test_data[features]
-test_X = test_X.fillna(train_X.mean())
-test_preds = rf_model.predict(test_X)
-output = pd.DataFrame({'Id': test_data.Id,
-                       'SalePrice': test_preds})
-output.to_csv('submission.csv', index=False)
+# test_file_path = './home-data-for-ml-course/test.csv'
+# test_data = pd.read_csv(test_file_path)
+#
+# test_X = test_data[features]
+# test_X = test_X.fillna(train_X.mean())
+# test_preds = rf_model.predict(test_X)
+# output = pd.DataFrame({'Id': test_data.Id,
+#                        'SalePrice': test_preds})
+# output.to_csv('submission.csv', index=False)

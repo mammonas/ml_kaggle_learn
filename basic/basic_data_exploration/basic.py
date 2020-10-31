@@ -24,7 +24,9 @@ print(X.head())
 melbourne_model = DecisionTreeRegressor(random_state=1)
 
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=0)
-melbourne_model.fit(train_X, train_y)
+
+
+# melbourne_model.fit(train_X, train_y)
 
 # print('Predict for just %s:' % len(X.head()))
 # print(X.head())
@@ -32,8 +34,31 @@ melbourne_model.fit(train_X, train_y)
 # print('Predictions are:')
 # print(predict)
 
-predict = melbourne_model.predict(val_X)
+def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
+    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=0)
+    model.fit(train_X, train_y)
+    preds_val = model.predict(val_X)
+    mae = mean_absolute_error(val_y, preds_val)
 
-mae = mean_absolute_error(val_y, predict)
-print('Mean Absolute Error')
-print(mae)
+    return mae
+
+
+# predict = melbourne_model.predict(val_X)
+
+# mae = mean_absolute_error(val_y, predict)
+# print('Mean Absolute Error')
+# print(mae)
+previous_mae = -1
+optimized_left_nodes = 0
+for max_leaf_nodes in range(2, 1000, 10):
+    my_mea = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)
+    if previous_mae == -1 or previous_mae >= my_mea:
+        previous_mae = my_mea
+        optimized_left_nodes = max_leaf_nodes
+    # else:
+    #     print('Optimized, break %d, %d %d' % (max_leaf_nodes, previous_mae, my_mea))
+    #     break
+
+    print('Max leaf nodes: %d \t MEA: %d , previous %d' % (max_leaf_nodes, my_mea, previous_mae))
+
+print('optimized_left_nodes %d, mae: %d' % (optimized_left_nodes, previous_mae))

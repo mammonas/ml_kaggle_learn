@@ -15,10 +15,12 @@ test_data = pd.read_csv(test_file_path)
 
 colsOriginal = ['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond', '1stFlrSF', 'FullBath',
                 'BedroomAbvGr',
-                'KitchenAbvGr', 'GarageArea', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2']
+                'KitchenAbvGr', 'GarageArea', 'MasVnrArea', 'BsmtFinSF1', 'TotalBsmtSF',
+                'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'PoolArea']
 colsToTransfer = ['MSZoning', 'Street', 'LotShape', 'LandContour', 'Utilities',
                   'Neighborhood', 'BldgType', 'MasVnrType', 'ExterQual',
-                  'ExterCond', 'Foundation', 'BsmtQual', 'BsmtCond', 'BsmtExposure']
+                  'ExterCond', 'Foundation', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1',
+                  'HeatingQC', 'CentralAir', 'GarageFinish', 'GarageCond', 'SaleCondition']
 # 'HouseStyle'
 features = colsOriginal + colsToTransfer
 train_X = train_data[features]
@@ -42,9 +44,9 @@ train_y = train_data.SalePrice
 
 s_train_X, s_val_X, s_train_y, s_val_y = train_test_split(train_X, train_y, random_state=0)
 rf_model = RandomForestRegressor(random_state=1)
-# rf_model.fit(s_train_X, s_train_y)
+rf_model.fit(s_train_X, s_train_y)
 
-rf_model.fit(train_X, train_y)
+# rf_model.fit(train_X, train_y)
 predicts = rf_model.predict(s_val_X)
 mae = mean_absolute_error(predicts, s_val_y)
 print('MAE %i' % mae)

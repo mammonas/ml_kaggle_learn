@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error
 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-train_file_path = './home-data-for-ml-course/train.csv'
+train_file_path = 'home-data-for-ml-course/train.csv'
 train_data = pd.read_csv(train_file_path)
 
 train_y = train_data.SalePrice
@@ -29,7 +29,7 @@ predicts = rf_model.predict(s_val_X)
 mae = mean_absolute_error(predicts, s_val_y)
 print('MAE %i' % mae)
 
-test_file_path = './home-data-for-ml-course/test.csv'
+test_file_path = 'home-data-for-ml-course/test.csv'
 test_data = pd.read_csv(test_file_path)
 
 test_X = test_data[numeric_train_data.columns]

@@ -7,10 +7,10 @@ from sklearn.compose import ColumnTransformer
 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-train_file_path = './home-data-for-ml-course/train.csv'
+train_file_path = 'home-data-for-ml-course/train.csv'
 train_data = pd.read_csv(train_file_path)
 
-test_file_path = './home-data-for-ml-course/test.csv'
+test_file_path = 'home-data-for-ml-course/test.csv'
 test_data = pd.read_csv(test_file_path)
 
 colsOriginal = ['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond', '1stFlrSF', 'FullBath',

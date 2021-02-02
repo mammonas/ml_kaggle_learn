@@ -54,4 +54,4 @@ print('MAE %i' % mae)
 test_preds = rf_model.predict(test_X)
 output = pd.DataFrame({'Id': test_data.Id,
                        'SalePrice': test_preds})
-output.to_csv('submission.csv', index=False)
+output.to_csv('submission_17756.csv', index=False)

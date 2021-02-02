@@ -61,14 +61,14 @@ test_data = pd.read_csv(test_file_path)
 
 X_test = test_data[X_train.columns]
 X_test = X_test.fillna(X_test.mean())
-print(len(test_data))
 
-# preds = model.predict(X_test)
-# print(len(preds))
-# output = pd.DataFrame({
-#     'Id': X_test.index,
-#     'SalePrice': preds
-# })
-# output.to_csv('submission_17756.csv', index=False)
+preds = model.predict(X_test)
+print(len(preds))
+output = pd.DataFrame({
+    'Id': X_test.Id,
+    'SalePrice': preds
+})
+output.to_csv('submission_17756.csv', index=False)
+
 # https://www.kaggle.com/mammonas/exercise-introduction/edit
 # https://www.kaggle.com/alexisbcook/missing-values
